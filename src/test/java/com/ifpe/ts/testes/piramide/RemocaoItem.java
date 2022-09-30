@@ -24,13 +24,10 @@ public class RemocaoItem {
 	@Test(expected = SQLException.class)
 	public void remocaoItemTest() throws SQLException {
 		RepositorioItem repositorio = new RepositorioItem();
-		repositorio.remover("1");
-		assertFalse(throwException());
+		int i = repositorio.remover("1");
+		assertEquals(1, i);
 	}
 	
-	private boolean throwException() throws SQLException{
-        throw new SQLException();
-    }
 	
 	@After
 	public void close() throws Exception {

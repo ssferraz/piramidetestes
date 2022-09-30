@@ -20,16 +20,13 @@ public class FinalizacaoEmprestimo {
 		db.abrirConexao();
 	}
 
-	@Test(expected = SQLException.class)
+	@Test
 	public void finalizaEmprestimoTest() throws SQLException {
 		RepositorioEmprestimo repositorio = new RepositorioEmprestimo();
-		repositorio.removerEmprestimo(1);
-		assertFalse(throwException());
+		int i = repositorio.removerEmprestimo(1);
+		assertEquals(1, i);
 	}
 	
-	private boolean throwException() throws SQLException{
-        throw new SQLException();
-    }
 	
 	@After
 	public void close() throws Exception {

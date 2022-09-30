@@ -22,19 +22,15 @@ public class EfetuacaoEmprestimo {
 		db.abrirConexao();
 	}
 
-	@Test(expected = SQLException.class)
+	@Test
 	public void efetuaEmprestimoTest() throws SQLException {
 		RepositorioEmprestimo repositorio = new RepositorioEmprestimo();
 		String data = new Timestamp(System.currentTimeMillis()).toString();
 		Emprestimo e = new Emprestimo("1408701", "1", data);
-		repositorio.efetuarEmprestimo(e);
-		assertFalse(throwException());
+		int i = repositorio.efetuarEmprestimo(e);
+		assertEquals(1, i);
 	}
-	
-	private boolean throwException() throws SQLException{
-        throw new SQLException();
-    }
-	
+		
 	@After
 	public void close() throws Exception {
 		db.fecharConexao();

@@ -1,6 +1,6 @@
 package com.ifpe.ts.testes.piramide;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
@@ -21,16 +21,12 @@ public class RemocaoProfessor {
 	}
 
 	
-	@Test(expected = SQLException.class)
+	@Test
 	public void remocaoProfessorTest() throws SQLException {
 		RepositorioProfessor repositorio = new RepositorioProfessor();
-		repositorio.remover("1408701");
-		assertFalse(throwException());
+		int i = repositorio.remover("1408701");
+		assertEquals(1, i);
 	}
-	
-	private boolean throwException() throws SQLException{
-        throw new SQLException();
-    }
 	
 	@After
 	public void close() throws Exception {

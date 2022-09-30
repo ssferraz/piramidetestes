@@ -22,17 +22,13 @@ public class CadastroItemTest {
 	}
 
 	
-	@Test(expected = SQLException.class)
+	@Test
 	public void cadastroItemTest() throws SQLException {
 		Item item = new Item("1", "Calendário");
 		RepositorioItem repositorio = new RepositorioItem();
-		repositorio.inserir(item);
-		assertFalse(throwException());
+		int i = repositorio.inserir(item);
+		assertEquals(1, i);
 	}
-	
-	private boolean throwException() throws SQLException{
-        throw new SQLException();
-    }
 	
 	@After
 	public void close() throws Exception {
